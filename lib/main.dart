@@ -14,7 +14,7 @@ class _MyAppState extends State<MyApp> {
   final questions = const [
     {
       'questionText': 'What\'s your favourite color?',
-      'answer': [
+      'answers': [
         {'text': 'Black', 'score': 10},
         {'text': 'Red', 'score': 5},
         {'text': 'Green', 'score': 3},
@@ -41,6 +41,20 @@ class _MyAppState extends State<MyApp> {
     },
   ];
 
+  var _questionIndex = 0;
+
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+    });
+  }
+
+  void _answerQuestion() {
+    setState(() {
+      _questionIndex++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -54,11 +68,31 @@ class _MyAppState extends State<MyApp> {
               width: double.infinity,
               margin: EdgeInsets.all(10),
               child: Text(
-                'What\'s your favourite color?',
+                questions[_questionIndex]['questionText'].toString(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 28,
                 ),
+              ),
+            ),
+            ...(questions[_questionIndex]['answers']
+                    as List<Map<String, Object>>)
+                .map(
+                  (answer) => Container(
+                    width: double.infinity,
+                    child: RaisedButton(
+                      color: Colors.blue,
+                      textColor: Colors.white,
+                      child: Text(answer['text'].toString()),
+                      onPressed: _answerQuestion,
+                    ),
+                  ),
+                ).toList(),
+            TextButton(
+              onPressed: _resetQuiz, 
+              child: Text('Restart Quiz!'),
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(Colors.blue),
               ),
             ),
           ],
