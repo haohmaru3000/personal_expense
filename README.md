@@ -1,6 +1,6 @@
-# primary_flutter
+# personal_expense
 
-A new Flutter project.
+A Flutter project displaying some basic information of our personal expenses withing a recent week.
 
 ## Getting Started
 

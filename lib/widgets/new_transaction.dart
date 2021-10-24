@@ -75,8 +75,7 @@ class _NewTransactionState extends State<NewTransaction> {
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
               controller: _amountController,
-              keyboardType: TextInputType
-                  .number, // TextInputType.numberWithOptions(decimal: true) for IOS
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
               onSubmitted: (_) =>
                   _submitData(), // _ means that it's not an important argument and we dont' need use it.
               // onChanged: (val) => amountInput = val,
@@ -90,12 +89,16 @@ class _NewTransactionState extends State<NewTransaction> {
                         ? 'No Date Chosen!'
                         : 'Picked Date: ${DateFormat.yMd().format(_selectedDate!)}'),
                   ),
-                  FlatButton(
-                    textColor: Theme.of(context).primaryColor,
+                  TextButton(
                     onPressed: _presentDatePicker,
                     child: Text(
-                      'Choose Date',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      'Choose Date', 
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
                     ),
                   ),
                 ],
@@ -105,9 +108,7 @@ class _NewTransactionState extends State<NewTransaction> {
               child: Text('Add Transaction'),
               style: ButtonStyle(
                 backgroundColor:
-                    MaterialStateProperty.all(Theme.of(context).primaryColor),
-                foregroundColor: MaterialStateProperty.all(
-                    Theme.of(context).textTheme.button!.color),
+                    MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
               ),
               onPressed: _submitData,
             ),

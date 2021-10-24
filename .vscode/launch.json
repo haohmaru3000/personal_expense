@@ -5,12 +5,12 @@
    "version": "0.2.0",
    "configurations": [
       {
-         "name": "primary_flutter",
+         "name": "personal_expense",
          "request": "launch",
          "type": "dart"
       },
       {
-         "name": "primary_flutter (profile mode)",
+         "name": "personal_expense (profile mode)",
          "request": "launch",
          "type": "dart",
          "flutterMode": "profile"
