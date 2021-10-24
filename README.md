@@ -1,6 +1,6 @@
 # personal_expense
 
-A Flutter project displaying some basic information of our personal expenses withing a recent week.
+A Flutter project displaying some basic information about our personal expenses for the last 7 days.
 
 ## Getting Started
 
