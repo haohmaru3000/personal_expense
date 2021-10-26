@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -28,10 +31,10 @@ class _NewTransactionState extends State<NewTransaction> {
     }
 
     widget.addTx(
-        // widget helps us to access addTx property from another class
-        enteredTitle,
-        enteredAmount,
-        _selectedDate,
+      // widget helps us to access addTx property from another class
+      enteredTitle,
+      enteredAmount,
+      _selectedDate,
     );
 
     Navigator.of(context).pop();
@@ -65,10 +68,10 @@ class _NewTransactionState extends State<NewTransaction> {
             top: 10,
             left: 10,
             right: 10,
-            // viewInsets: gives us info about anything lapping into view(soft kb). 
+            // viewInsets: gives us info about anything lapping into view(soft kb).
             // bottom: how much space is occupied by the keyboard
             // Adjust the bottom padding of the card by the kb space + 10
-            bottom: MediaQuery.of(context).viewInsets.bottom + 15, 
+            bottom: MediaQuery.of(context).viewInsets.bottom + 15,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -94,30 +97,43 @@ class _NewTransactionState extends State<NewTransaction> {
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                      child: Text(_selectedDate == null
-                          ? 'No Date Chosen!'
-                          : 'Picked Date: ${DateFormat.yMd().format(_selectedDate!)}'),
-                    ),
-                    TextButton(
-                      onPressed: _presentDatePicker,
                       child: Text(
-                        'Choose Date', 
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      style: ButtonStyle(
-                        foregroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
+                        _selectedDate == null
+                            ? 'No Date Chosen!'
+                            : 'Picked Date: ${DateFormat.yMd().format(_selectedDate!)}',
                       ),
                     ),
+                    Platform.isIOS
+                        ? CupertinoButton(
+                            onPressed: _presentDatePicker,
+                            child: Text(
+                              'Choose Date',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                        : TextButton(
+                            onPressed: _presentDatePicker,
+                            child: Text(
+                              'Choose Date',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            style: ButtonStyle(
+                              foregroundColor: MaterialStateProperty.all(
+                                  Theme.of(context).colorScheme.primary),
+                            ),
+                          ),
                   ],
                 ),
               ),
               ElevatedButton(
                 child: Text('Add Transaction'),
                 style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
+                  backgroundColor: MaterialStateProperty.all(
+                      Theme.of(context).colorScheme.primary),
                 ),
                 onPressed: _submitData,
               ),
