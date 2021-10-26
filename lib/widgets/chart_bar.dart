@@ -10,7 +10,7 @@ class ChartBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      // constraint: define how much space a certain widget may take
+      // constraints: define how much space a certain widget may take
       builder: (ctx, constraints) {
         return Column(
           children: <Widget>[
