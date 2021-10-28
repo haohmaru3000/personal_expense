@@ -54,7 +54,7 @@ class _NewTransactionState extends State<NewTransaction> {
         _selectedDate = pickedDate;
       });
     });
-    print('...');
+    // print('...');
   }
 
   @override
@@ -76,7 +76,7 @@ class _NewTransactionState extends State<NewTransaction> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               TextField(
-                decoration: InputDecoration(labelText: 'Title'),
+                decoration: const InputDecoration(labelText: 'Title'),
                 controller: _titleController,
                 onSubmitted: (_) => _submitData(),
                 // onChanged: (val) {
@@ -84,9 +84,9 @@ class _NewTransactionState extends State<NewTransaction> {
                 // },
               ),
               TextField(
-                decoration: InputDecoration(labelText: 'Amount'),
+                decoration: const InputDecoration(labelText: 'Amount'),
                 controller: _amountController,
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                keyboardType: const TextInputType.numberWithOptions(decimal: true),
                 onSubmitted: (_) =>
                     _submitData(), // _ means that it's not an important argument and we dont' need use it.
                 // onChanged: (val) => amountInput = val,
@@ -107,7 +107,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 ),
               ),
               ElevatedButton(
-                child: Text('Add Transaction'),
+                child: const Text('Add Transaction'),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
                       Theme.of(context).colorScheme.primary),

@@ -27,14 +27,14 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.amber,
           errorColor: Colors.red,
         ),
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
             fontFamily: 'OpenSans',
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           headline6: TextStyle(
             fontFamily: 'OpenSans',
             fontWeight: FontWeight.bold,
@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return _userTransactions.where((tx) {
       return tx.date.isAfter(
         DateTime.now().subtract(
-          Duration(days: 7),
+          const Duration(days: 7),
         ),
       );
     }).toList();
@@ -107,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final isLanscape = mediaQuery.orientation == Orientation.landscape;
     final appBar = Platform.isIOS
         ? CupertinoNavigationBar(
-            middle: Text(
+            middle: const Text(
               'Personal Expense',
             ),
             trailing: Row(
@@ -115,28 +115,30 @@ class _MyHomePageState extends State<MyHomePage> {
                   .min, // The Row will shrink along the main axis from left to right
               children: <Widget>[
                 GestureDetector(
-                  child: Icon(CupertinoIcons.add),
+                  child: const Icon(CupertinoIcons.add),
                   onTap: () => _startAddNewTransaction(context),
                 ),
               ],
             ),
           )
         : (AppBar(
-            title: Text('Personal Expenses'),
+            title: const Text('Personal Expenses'),
             actions: <Widget>[
               IconButton(
-                icon: Icon(Icons.add),
+                icon: const Icon(Icons.add),
                 onPressed: () => _startAddNewTransaction(context),
               ),
             ],
-          ) as ObstructingPreferredSizeWidget);
+          ));
+
     final txListWidget = Container(
       height: (mediaQuery.size.height -
-              appBar.preferredSize.height -
+              (appBar as PreferredSizeWidget).preferredSize.height -
               mediaQuery.padding.top) *
           0.7,
       child: TransactionList(_userTransactions, _deleteTransaction),
     );
+
     final pageBody = SafeArea(
       // Make sure things are positioned within boundaries respecting reserved areas.
       child: SingleChildScrollView(
@@ -186,10 +188,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+
     return Platform.isIOS
         ? CupertinoPageScaffold(
             child: pageBody,
-            navigationBar: appBar,
+            navigationBar: appBar as ObstructingPreferredSizeWidget,
           )
         : Scaffold(
             appBar: appBar,
@@ -199,7 +202,7 @@ class _MyHomePageState extends State<MyHomePage> {
             floatingActionButton: Platform.isIOS
                 ? Container()
                 : FloatingActionButton(
-                    child: Icon(Icons.add),
+                    child: const Icon(Icons.add),
                     onPressed: () => _startAddNewTransaction(context),
                   ),
           );

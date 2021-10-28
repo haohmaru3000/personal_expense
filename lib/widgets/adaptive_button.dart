@@ -16,7 +16,7 @@ class AdaptiveFlatButton extends StatelessWidget {
             onPressed: handler,
             child: Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -25,7 +25,7 @@ class AdaptiveFlatButton extends StatelessWidget {
             onPressed: handler,
             child: Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),
