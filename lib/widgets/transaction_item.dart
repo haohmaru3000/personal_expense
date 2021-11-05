@@ -12,7 +12,7 @@ class TransactionItem extends StatefulWidget {
     Key? key,
     required this.transaction,
     required this.deleteTx,
-  }) : super(key: key);
+  }) : super(key: key); // Instantiate the parent widget class
 
   @override
   State<TransactionItem> createState() => _TransactionItemState();
