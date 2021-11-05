@@ -31,25 +31,34 @@ class TransactionList extends StatelessWidget {
               ],
             );
           })
-        // : ListView.builder(
-        //     itemBuilder: (ctx, index) {
-        //       return TransactionItem(
-        //         transaction: transactions[index],
-        //         deleteTx: deleteTx,
-        //       );
-        //     },
-        // itemCount: transactions.length, // if we have 2 transactions, we're gonna build 2 items
-
-        : ListView(
-            children: transactions
-                .map(
-                  (tx) => TransactionItem(
-                    key: ValueKey(tx.id),
-                    transaction: tx,
-                    deleteTx: deleteTx,
-                  ),
-                )
-                .toList(),
+        : ListView.custom(
+            childrenDelegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return TransactionItem(
+                  transaction: transactions[index],
+                  key: ValueKey<Transaction>(transactions[index]),
+                  deleteTx: deleteTx,
+                );
+              },
+              childCount: transactions.length,
+              findChildIndexCallback: (Key key) {
+                final ValueKey<Transaction> valueKey =
+                    key as ValueKey<Transaction>;
+                final Transaction data = valueKey.value;
+                return transactions.indexOf(data);
+              },
+            ),
           );
+    // : ListView.builder(
+    //     itemBuilder: (ctx, index) {
+    //       return TransactionItem(
+    //         key: ValueKey(transactions[index].id),
+    //         transaction: transactions[index],
+    //         deleteTx: deleteTx,
+    //       );
+    //     },
+    //     itemCount: transactions
+    //         .length, // if we have 2 transactions, we're gonna build 2 items
+    // );
   }
 }
