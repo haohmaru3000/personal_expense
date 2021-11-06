@@ -48,12 +48,23 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+  MyHomePage() {
+    print('Constructor MyHomePage Widget');
+  }
+
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() {
+    print('createState() MyHomePage Widget');
+    return _MyHomePageState();
+  }
 }
 
 class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   final List<Transaction> _userTransactions = [];
+
+  _MyHomePageState() {
+    print('Constructor MyHomePage State');
+  }
 
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((tx) {
@@ -69,8 +80,15 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
   @override
   void initState() {
+    print('initState() MyHomePage State');
     WidgetsBinding.instance!.addObserver(this);
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant MyHomePage oldWidget) {
+    print('didUpdateWidget() MyHomePage Widget');
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -81,6 +99,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
   @override
   void dispose() {
+    print('dispose() MyHomePage Widget');
     WidgetsBinding.instance!.removeObserver(this);
     super.dispose();
   }
@@ -94,6 +113,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
         id: DateTime.now().toString());
 
     setState(() {
+      print('setState() MyHomePage State');
       _userTransactions.add(newTx);
     });
   }
@@ -169,6 +189,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    print('build() MyHomePage Widget');
     final mediaQuery = MediaQuery.of(context);
     final isLanscape = mediaQuery.orientation == Orientation.landscape;
     final appBar = Platform.isIOS

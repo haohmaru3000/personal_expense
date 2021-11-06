@@ -12,7 +12,7 @@ class NewTransaction extends StatefulWidget {
 
   @override
   State<NewTransaction> createState() {
-    print('createState NewTransaction Widget');
+    print('createState() NewTransaction Widget');
     return _NewTransactionState();
   }
 }
@@ -28,19 +28,19 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   void initState() {
-    print('initState()');
+    print('initState() NewTransaction State');
     super.initState();
   }
 
   @override
   void didUpdateWidget(covariant NewTransaction oldWidget) {
-    print('didUpdateWidget()');
+    print('didUpdateWidget() NewTransaction Widget');
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
-    print('dispose()');
+    print('dispose() NewTransaction Widget');
     super.dispose();
   }
 
@@ -86,6 +86,7 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
+    print('build() NewTransaction Widget');
     return SingleChildScrollView(
       child: Card(
         elevation: 5,

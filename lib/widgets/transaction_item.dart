@@ -8,14 +8,19 @@ class TransactionItem extends StatefulWidget {
   final Transaction transaction;
   final Function deleteTx;
 
-  const TransactionItem({
+  TransactionItem({
     Key? key,
     required this.transaction,
     required this.deleteTx,
-  }) : super(key: key); // Instantiate the parent widget class
+  }) : super(key: key) { // Instantiate the parent widget class
+    print('Constructor TransactionItem Widget');
+  }
 
   @override
-  State<TransactionItem> createState() => _TransactionItemState();
+  State<TransactionItem> createState() {
+    print('createState() TransactionItem State');
+    return _TransactionItemState();
+  }
 }
 
 class _TransactionItemState extends State<TransactionItem> {
@@ -23,6 +28,7 @@ class _TransactionItemState extends State<TransactionItem> {
 
   @override
   void initState() {
+    print('initState() TransactionItem State');
     const availableColors = [
       Colors.red,
       Colors.black,
@@ -35,7 +41,14 @@ class _TransactionItemState extends State<TransactionItem> {
   }
 
   @override
+  void didUpdateWidget(covariant TransactionItem oldWidget) {
+    print('didUpdateWidget() TransactionItem Widget');
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('build() TransactionItem Widget');
     return Card(
       elevation: 5,
       margin: const EdgeInsets.symmetric(
