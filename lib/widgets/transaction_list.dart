@@ -15,7 +15,6 @@ class TransactionList extends StatefulWidget {
 }
 
 class _TransactionListState extends State<TransactionList> {
-
   @override
   void didUpdateWidget(covariant TransactionList oldWidget) {
     print('didUpdateWidget() TransactionList Widget');
@@ -36,7 +35,7 @@ class _TransactionListState extends State<TransactionList> {
                 const SizedBox(
                   height: 10,
                 ),
-                Container(
+                SizedBox(
                   height: constraints.maxHeight * 0.6,
                   child: Image.asset(
                     'assets/images/waiting.png',

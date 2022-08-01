@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage() {
+  MyHomePage({Key? key}) : super(key: key) {
     print('Constructor MyHomePage Widget');
   }
 
@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   @override
   void dispose() {
     print('dispose() MyHomePage Widget');
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
@@ -132,8 +132,8 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
       builder: (_) {
         return GestureDetector(
           onTap: () {},
-          child: NewTransaction(_addNewTransaction),
           behavior: HitTestBehavior.opaque,
+          child: NewTransaction(_addNewTransaction),
         );
       },
     );
@@ -162,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
         ],
       ),
       _showChart
-          ? Container(
+          ? SizedBox(
               height: (mediaQuery.size.height -
                       appBar.preferredSize.height -
                       mediaQuery.padding.top) *
@@ -176,7 +176,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   List<Widget> _buildPortraitContent(MediaQueryData mediaQuery,
       PreferredSizeWidget appBar, Container txListWidget) {
     return [
-      Container(
+      SizedBox(
         height: (mediaQuery.size.height -
                 appBar.preferredSize.height -
                 mediaQuery.padding.top) *
@@ -251,8 +251,8 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
     return Platform.isIOS
         ? CupertinoPageScaffold(
-            child: pageBody,
             navigationBar: appBar as ObstructingPreferredSizeWidget,
+            child: pageBody,
           )
         : Scaffold(
             appBar: appBar,

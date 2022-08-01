@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../widgets/adaptive_button.dart';
@@ -120,7 +119,7 @@ class _NewTransactionState extends State<NewTransaction> {
                     _submitData(), // _ means that it's not an important argument and we dont' need use it.
                 // onChanged: (val) => amountInput = val,
               ),
-              Container(
+              SizedBox(
                 height: 70,
                 child: Row(
                   children: <Widget>[
@@ -136,12 +135,12 @@ class _NewTransactionState extends State<NewTransaction> {
                 ),
               ),
               ElevatedButton(
-                child: const Text('Add Transaction'),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
                       Theme.of(context).colorScheme.primary),
                 ),
                 onPressed: _submitData,
+                child: const Text('Add Transaction'),
               ),
             ],
           ),

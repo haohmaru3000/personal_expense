@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -26,15 +25,15 @@ class AdaptiveFlatButton extends StatelessWidget {
           )
         : TextButton(
             onPressed: handler,
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all(
+                  Theme.of(context).colorScheme.primary),
+            ),
             child: Text(
               text,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
-            ),
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all(
-                  Theme.of(context).colorScheme.primary),
             ),
           );
   }

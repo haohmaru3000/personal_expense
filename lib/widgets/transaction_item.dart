@@ -12,7 +12,8 @@ class TransactionItem extends StatefulWidget {
     Key? key,
     required this.transaction,
     required this.deleteTx,
-  }) : super(key: key) { // Instantiate the parent widget class
+  }) : super(key: key) {
+    // Instantiate the parent widget class
     print('Constructor TransactionItem Widget');
   }
 
